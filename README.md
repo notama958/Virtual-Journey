@@ -13,11 +13,18 @@
 
 ## Features
 
--[ ] Find 360 videos with input keyword theme -[ ] Control video with touching -[ ] Control video with gyroscope sensor -[ ] Free videos with download/save button -[ ] Friendly + easy UI
+- [ ] Find 360 videos with input keyword theme
+- [ ] Control video with touching
+- [ ] Control video with gyroscope sensor
+- [ ] Free videos with download/save button
+- [ ] Friendly + easy UI
 
 ## Technologies in use
 
--[x] Youtube API -[x] [React Native Sensor](https://react-native-sensors.github.io/) -[x] [React Native Youtube Iframe](https://github.com/LonelyCpp/react-native-youtube-iframe) -[x] Download video with [ react-native-ytdl](https://github.com/ytdl-js/react-native-ytdl) -[x] ...
+- [ x ] Youtube API
+- [ x ] [React Native Sensor] (https://react-native-sensors.github.io/)
+- [ x ] [React Native Youtube Iframe] (https://github.com/LonelyCpp/react-native-youtube-iframe) - [ x ] Download video with [ react-native-ytdl] (https://github.com/ytdl-js/react-native-ytdl)
+- [ x ] ...
 
 ## License
 
