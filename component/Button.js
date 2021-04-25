@@ -1,6 +1,9 @@
-import {View, Button, StyleSheet, TouchableOpacity, Text} from 'react-native';
+// @ modules used
+import {TouchableOpacity, Text} from 'react-native';
 import * as React from 'react';
 import styles from '../css/styles';
+
+// template Button for HomeScreen's buttons
 const AppButton = ({onPress, title, size, backgroundColor, disable}) => (
   <TouchableOpacity
     activeOpacity={0.8}
@@ -14,6 +17,10 @@ const AppButton = ({onPress, title, size, backgroundColor, disable}) => (
         elevation: 6,
       },
       (backgroundColor = {backgroundColor}),
+      title === ('Explore' || 'Storage') && {
+        //Explore and Storage buttons have extra margin
+        margin: 20,
+      },
     ]}>
     <Text style={[styles.appButtonText, size === 'sm' && {fontSize: 14}]}>
       {title}

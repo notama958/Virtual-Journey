@@ -1,14 +1,11 @@
 import * as React from 'react';
-import {Button, View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
-import styles from './css/styles';
 
 import HomeScreen from './component/HomeScreen';
 import ModalScreen from './component/ModalScreen';
 import Panorama from './component/Panorama';
-
+import Storage from './component/Storage';
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
@@ -21,7 +18,7 @@ function MainStackScreen() {
           headerStyle: {
             backgroundColor: '#FFFFFF',
           },
-          headerTintColor: '#523A34',
+          headerTintColor: '#1A1B25',
           headerTitleStyle: {
             fontWeight: 'bold',
           },
@@ -31,6 +28,19 @@ function MainStackScreen() {
       <MainStack.Screen
         name="Modal"
         component={ModalScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: '#FFFFFF',
+          },
+          headerTintColor: '#523A34',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <MainStack.Screen
+        name="Storage"
+        component={Storage}
         options={{
           headerStyle: {
             backgroundColor: '#FFFFFF',

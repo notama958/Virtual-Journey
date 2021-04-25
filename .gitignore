@@ -59,4 +59,5 @@ buck-out/
 /ios/Pods/
 
 # types
-./types
+./api/types.js
+.env

@@ -4,12 +4,11 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#1D201F',
+    backgroundColor: '#1A1B25',
     fontFamily: 'Cochin',
     padding: 5,
   },
-  // panorama view
-
+  // Home Screen
   h1: {
     color: '#DFF8EB',
     fontSize: 25,
@@ -81,13 +80,11 @@ export default StyleSheet.create({
     padding: 2,
     color: 'white',
   },
-  // flatlist item
+  // flatlist in Modal Screen + Storage
   flatlistContainer: {
     flex: 1,
     backgroundColor: '#F0EFF4',
     marginTop: 1,
-
-    // backgroundColor: 'aliceblue',
   },
   item: {
     position: 'relative',
@@ -97,6 +94,17 @@ export default StyleSheet.create({
     padding: 1,
     alignItems: 'center',
     overflow: 'hidden',
+  },
+  itemFromStorage: {
+    position: 'relative',
+    width: 100,
+    height: 100,
+    flex: 3,
+    padding: 1,
+    alignItems: 'center',
+    overflow: 'hidden',
+    elevation: 7,
+    margin: 5,
   },
   title: {
     fontSize: 12,
@@ -127,7 +135,19 @@ export default StyleSheet.create({
     textAlignVertical: 'bottom',
     overflow: 'hidden',
   },
-  // panorama wrapper
+  logoFromStorage: {
+    flex: 1,
+    resizeMode: 'cover',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'white',
+    overflow: 'hidden',
+  },
+  // Panorama Screen
   wrapper: {
     alignItems: 'stretch',
     resizeMode: 'cover',
@@ -145,7 +165,6 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  //infoBox
   wrapperInfoBox: {
     flex: 1,
     flexDirection: 'row',
@@ -159,7 +178,6 @@ export default StyleSheet.create({
   },
   infoBox: {
     flexDirection: 'column',
-    // width: '80%',
     flex: 3,
     zIndex: 4,
   },
@@ -182,14 +200,24 @@ export default StyleSheet.create({
     fontStyle: 'italic',
   },
   downloadBtn: {
-    // width: '20%',
     flex: 1,
-    // elevation: 8,
-    borderRadius: 10,
+    elevation: 8,
+    borderRadius: 100,
     borderColor: '#fff',
-    borderRadius: 10,
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 10,
+    opacity: 0.7,
+  },
+  // footer
+  footerText: {
+    textAlign: 'center',
+    color: 'black',
+    top: 0,
+    fontStyle: 'italic',
+    fontSize: 14,
+    color: '#72705B',
+    padding: 5,
   },
 });
