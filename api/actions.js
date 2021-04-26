@@ -12,7 +12,7 @@ const {config, fs} = RNFetchBlob;
 
 const url = 'https://api.flickr.com/services/rest';
 
-//@ route      GET
+//@ route      GET /
 //@des         get photo's detail info including author, title, location, dateupload,..
 //@access      public
 export const getPhotoInfo = async id => {
@@ -27,7 +27,7 @@ export const getPhotoInfo = async id => {
   return response.data;
 };
 
-//@ route      GET
+//@ route      GET /
 //@des         get photo's all sizes link
 //@access      public
 export const getVrPhotoUrl = async id => {
@@ -42,7 +42,7 @@ export const getVrPhotoUrl = async id => {
   return response.data;
 };
 
-//@ route       GET
+//@ route       GET /
 //@des         get photo's by search like tag, location, page
 //@access      public
 export const getPhotoBySearch = async (
@@ -65,7 +65,7 @@ export const getPhotoBySearch = async (
   return response.data;
 };
 
-//@ route      GET
+//@ route      GET /
 //@des         get photo's by search with random page
 //@access      public
 export const getRandomPhoto = async randomPage => {

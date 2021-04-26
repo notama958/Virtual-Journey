@@ -111,7 +111,10 @@ const ModalScreen = ({route, navigation}) => {
           (async function () {
             const isSuccessful = await loadMorePhotos();
             if (isSuccessful) console.log('Successful loaded');
-            else console.log('Fail loaded');
+            else {
+              setLoadMore(false);
+              console.log('Fail loaded');
+            }
           })();
         }}
         ItemSeparatorComponent={RenderSeparator} // Separate between each item (highlight+ separate each row)
