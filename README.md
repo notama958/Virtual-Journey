@@ -20,7 +20,7 @@
 
 ## Example
 
-Video of [Screencast](https://youtu.be/EFOPD_BSOQI)
+Video of [Screencast](https://youtu.be/QeobRTL6yBE)
 <br/>
 ![](https://github.com/notaman958/gifs/blob/main/giphy.gif)
 
