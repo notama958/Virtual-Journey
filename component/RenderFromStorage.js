@@ -15,7 +15,6 @@ const RenderFromStorage = ({item, navigation, reload}) => {
       onPress={() =>
         // move to screen Panorama
         {
-          alert('Pressed');
           navigation.navigate('Panorama', {
             url: path + item,
           });
