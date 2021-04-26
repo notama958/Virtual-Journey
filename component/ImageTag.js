@@ -3,8 +3,11 @@ import {Text, TouchableOpacity, ImageBackground, Vibration} from 'react-native';
 import styles from '../css/styles';
 // @ Child Components and actions
 import AwesomeAlert from 'react-native-awesome-alerts';
-import {deleteImageFromStorage} from '../api/actions';
-import {readFilesFromFolder} from '../api/actions';
+import {
+  deleteImageFromStorage,
+  readFilesFromFolder,
+  checkReadFilePermission,
+} from '../api/actions';
 
 // @ Sub-component for rendering Flatlist
 // prop passed to ImageTag include the function (setReload)
@@ -21,7 +24,7 @@ const ImageTag = props => {
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      delayLongPress={3}
+      delayLongPress={1000}
       onLongPress={() => {
         if (fromStorage) {
           // activate on-long-press for only images in storage
@@ -67,9 +70,9 @@ const ImageTag = props => {
            * call function setReload from Storage component
            * setReload state to false after 1s
            */
-          setImageDeletion(false);
           (async function () {
             let res;
+
             try {
               res = await deleteImageFromStorage(props.item);
             } catch (err) {

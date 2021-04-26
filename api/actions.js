@@ -124,7 +124,7 @@ export const formatDate = date => {
 
 //@des         function to ask to write permission
 //@access      public
-export const checkDownloadPermission = async () => {
+export const checkWritePermission = async () => {
   try {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
@@ -156,7 +156,8 @@ export const checkReadFilePermission = async () => {
       return true;
     } else return false;
   } catch (error) {
-    console.warn(err);
+    alert(error);
+    console.warn(error);
   }
 };
 

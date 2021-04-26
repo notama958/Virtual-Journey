@@ -143,7 +143,7 @@ function HomeScreen({navigation}) {
                   setTimeout(() => setError(true), 500);
                 } else {
                   const {photo, pages, page} = photos;
-                  setLoading(false);
+                  setLoading(false); // finished loading image array ready to move to Modal Screen
                   setText('');
                   navigation.navigate('Modal', {
                     tags: 'Random',

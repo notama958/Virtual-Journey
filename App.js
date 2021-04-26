@@ -11,6 +11,8 @@ const RootStack = createStackNavigator();
 
 function MainStackScreen() {
   return (
+    // acts as navigator when switching between screens
+    // Panorama (no header) <-> Storage <-> Home <-> Modal <-> Panorama (no header)
     <MainStack.Navigator>
       <MainStack.Screen
         name="Home"
@@ -57,6 +59,7 @@ function MainStackScreen() {
 
 function App() {
   return (
+    // RootStack set headless screen
     <NavigationContainer>
       <RootStack.Navigator mode="modal" headerMode="none">
         <RootStack.Screen name="Main" component={MainStackScreen} />

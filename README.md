@@ -14,8 +14,9 @@
 
 ### Known Bugs
 
-- There would be some unwanted pop up "loading" message which should have been turned off already when pictures have sucessfully loaded
--
+- In panorama screen, when loading image is too fast the first alert box is turned off rapidly by the second alert box
+- In panorama screen, before the second alert box ( telling image is loaded succesullly) SAVE button is still clickable before that
+- There might be alerts about update on unmounted component in Storage screen
 
 ## Example
 

@@ -32,10 +32,10 @@ const ModalScreen = ({route, navigation}) => {
       // condition to start fetching to load more images
       if (!loadMore && pages > iterator) {
         let res;
-        /**
-         * Normal search => load more by iterating page by 1
-         */
         if (tags !== 'Random') {
+          /**
+           * Normal search => load more by iterating page by 1
+           */
           setIterator(++iterator);
           res = await getPhotoBySearch(tags, location, iterator);
         } else {
@@ -96,7 +96,7 @@ const ModalScreen = ({route, navigation}) => {
     /**
      * Please refer to the demo/Virtual_Journey.jpg
      */
-    <SafeAreaView style={styles.flatlistContainer}>
+    <View style={styles.flatlistContainer}>
       <FlatList
         data={currList}
         renderItem={({item}) => (
@@ -105,13 +105,13 @@ const ModalScreen = ({route, navigation}) => {
         onEndReachedThreshold={0.1}
         onEndReached={() => {
           /**
-           * Call loadMorePhotos once when the scroll position
+           * Call loadMorePhotos once the scroll position
            * gets within onEndReachedThreshold of the rendered content.
            */
           (async function () {
             const isSuccessful = await loadMorePhotos();
             if (isSuccessful) console.log('Successful loaded');
-            else {
+            if (!isSuccessful) {
               setLoadMore(false);
               console.log('Fail loaded');
             }
@@ -132,7 +132,7 @@ const ModalScreen = ({route, navigation}) => {
           )
         }
       />
-    </SafeAreaView>
+    </View>
   );
 };
 export default ModalScreen;

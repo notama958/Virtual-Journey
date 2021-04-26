@@ -4,7 +4,7 @@ import styles from '../css/styles';
 // @ used modules
 import RNFetchBlob from 'rn-fetch-blob';
 // @ Child component and action
-import {readFilesFromFolder} from '../api/actions';
+import {readFilesFromFolder, checkReadFilePermission} from '../api/actions';
 import RenderFromStorage from './RenderFromStorage';
 /**
  * Parent Component for Storage Screen
@@ -13,13 +13,18 @@ import RenderFromStorage from './RenderFromStorage';
 const Storage = ({navigation}) => {
   const [arrImage, setArrImage] = useState([]); // set state to current array image
   const [reload, setReload] = useState(false); // set state reload flatlist
+
   // immediately load files when open Storage
   useEffect(() => {
     (async function () {
-      const files = await readFilesFromFolder();
-      setArrImage(files);
+      const readPermission = await checkReadFilePermission();
+      if (readPermission) {
+        const files = await readFilesFromFolder();
+        setArrImage(files);
+      } else alert('Please enable read/write permission');
     })();
   }, []);
+
   // play as a switcher for notifying reload Flatlist and arrImage
   useEffect(() => {
     if (reload) {

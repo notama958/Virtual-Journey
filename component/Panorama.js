@@ -16,7 +16,7 @@ import {
   getVrPhotoUrl,
   getPhotoInfo,
   formatDate,
-  checkDownloadPermission,
+  checkWritePermission,
   downloadImage,
 } from '../api/actions';
 
@@ -115,17 +115,17 @@ const Panorama = ({route, navigation}) => {
           </View>
           <TouchableOpacity
             style={styles.downloadBtn}
-            delayLongPress={3}
+            delayLongPress={1000}
             onLongPress={() => {
               /**
-               * Call checkDownloadPermission
+               * Call checkWritePermission
                * => reponse is true alert loading to notify user
                *    => call downloadImage => then set loading to false to turn off alert
                * => reponse is false => alert error
                *
                */
               Vibration.vibrate(1 * 500, false);
-              const response = checkDownloadPermission();
+              const response = checkWritePermission();
               if (response) {
                 setLoading(true);
                 downloadImage(vrURL)

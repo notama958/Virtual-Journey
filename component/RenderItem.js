@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {Text, TouchableOpacity, ImageBackground, Vibration} from 'react-native';
+
 // @ Child component
 import ImageTag from './ImageTag';
 /**
@@ -22,13 +24,15 @@ const RenderItem = ({item, navigation}) => {
         /**
          * navigate Panorama screen
          */
-        navigation.navigate('Panorama', {
-          id: id,
-          owner: owner,
-          secret: secret,
-          server: server,
-          title: title,
-        });
+        setTimeout(() => {
+          navigation.navigate('Panorama', {
+            id: id,
+            owner: owner,
+            secret: secret,
+            server: server,
+            title: title,
+          });
+        }, 500);
       }}
       url={url + 'q.jpg'}
     />

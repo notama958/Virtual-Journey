@@ -8,14 +8,18 @@ import ImageTag from './ImageTag';
  */
 const RenderFromStorage = ({item, navigation, reload}) => {
   const path = 'file:///storage/emulated/0/Download/VJ/';
+
   return (
     <ImageTag
       item={item}
       onPress={() =>
         // move to screen Panorama
-        navigation.navigate('Panorama', {
-          url: path + item,
-        })
+        {
+          alert('Pressed');
+          navigation.navigate('Panorama', {
+            url: path + item,
+          });
+        }
       }
       url={path + item}
       setReload={reload}
