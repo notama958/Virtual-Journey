@@ -20,7 +20,7 @@
 ## Example
 
 - [Screencast](https://youtu.be/EFOPD_BSOQI)
-- ![Demo gif](./demo/demo.mp4)
+  ![Demo gif](./demo/demo.mp4)
 
 ## Description
 
