@@ -21,7 +21,7 @@
 
 [Screencast](https://youtu.be/EFOPD_BSOQI)
 <br/>
-![Demo gif](https://gph.is/g/4D85g8w)
+![Demo gif](https://media.giphy.com/media/Sbea2JIMmKpywVolBH/giphy.gif)
 
 ## Description
 
