@@ -19,9 +19,9 @@
 
 ## Example
 
-[Screencast](https://youtu.be/EFOPD_BSOQI)
+Video of [Screencast](https://youtu.be/EFOPD_BSOQI)
 <br/>
-![Demo gif](https://media.giphy.com/media/Sbea2JIMmKpywVolBH/giphy.gif)
+![](https://github.com/notaman958/gifs/blob/main/giphy.gif)
 
 ## Description
 
