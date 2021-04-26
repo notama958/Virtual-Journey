@@ -19,8 +19,8 @@
 
 ## Example
 
-- [Screencast](https://youtu.be/EFOPD_BSOQI)
-  ![Demo gif](./demo/demo.mp4)
+[Screencast](https://youtu.be/EFOPD_BSOQI)
+![Demo gif](https://gph.is/g/4D85g8w)
 
 ## Description
 
