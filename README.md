@@ -15,8 +15,8 @@
 ### Known Bugs
 
 - In panorama screen, when loading image is too fast the first alert box is turned off rapidly by the second alert box
-- In panorama screen, before the second alert box ( telling image is loaded succesullly) SAVE button is still clickable before that
-- There might be alerts about update on unmounted component in Storage screen
+- ~~In panorama screen, before the second alert box ( telling image is loaded succesullly) SAVE button is still clickable before that~~
+- ~~There might be alerts about update on unmounted component in Storage screen~~
 
 ## Example
 
