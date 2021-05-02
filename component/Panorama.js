@@ -26,6 +26,7 @@ const Panorama = ({route, navigation}) => {
   const [vrURL, setVrUrl] = useState(''); // set state for image url
   const [info, setInfo] = useState({author: '', date: '', location: ''}); // set state for picture info
   const [loading, setLoading] = useState(false); // set state loading alert box
+  const [canDownload, setCanDownload] = useState(false); // ensure image is loaded before can actually download
   useEffect(() => {
     if (route.params.id !== undefined && route.params.title != undefined) {
       const {
@@ -55,7 +56,7 @@ const Panorama = ({route, navigation}) => {
         /**
          * Call getPhotoInfo with id provided
          * try to search for image information
-         * standard info: author, location, dateuploaded, date
+         * standard info: author, location, dateuploaded
          */
         const res = await getPhotoInfo(id);
         const jsonString = res.slice(14, res.length - 1); // extract the jsonString
@@ -63,7 +64,7 @@ const Panorama = ({route, navigation}) => {
         const {
           photo: {
             dateuploaded,
-            owner: {realname, username, location},
+            owner: {realname, username, location}, // some users dont display realname, so replace it with username
           },
           stat,
         } = jsonFlickrApi;
@@ -84,6 +85,7 @@ const Panorama = ({route, navigation}) => {
       setVrUrl(route.params.url);
     }
   }, []);
+
   return (
     /**
      * Please refer to the demo/Virtual_Journey.jpg
@@ -118,6 +120,7 @@ const Panorama = ({route, navigation}) => {
             delayLongPress={1000}
             onLongPress={() => {
               /**
+               * if canDownload state is true
                * Call checkWritePermission
                * => reponse is true alert loading to notify user
                *    => call downloadImage => then set loading to false to turn off alert
@@ -125,16 +128,18 @@ const Panorama = ({route, navigation}) => {
                *
                */
               Vibration.vibrate(1 * 500, false);
-              const response = checkWritePermission();
-              if (response) {
-                setLoading(true);
-                downloadImage(vrURL)
-                  .then(res => {
-                    setLoading(false);
-                  })
-                  .catch(err => {
-                    setLoading(false);
-                  });
+              if (canDownload) {
+                const response = checkWritePermission();
+                if (response) {
+                  setLoading(true);
+                  downloadImage(vrURL)
+                    .then(res => {
+                      setLoading(false);
+                    })
+                    .catch(err => {
+                      setLoading(false);
+                    });
+                }
               }
             }}>
             <Text
@@ -162,7 +167,12 @@ const Panorama = ({route, navigation}) => {
         enableTouchTracking={true}
         imageUrl={vrURL}
         onImageLoadingFailed={() => alert('May take few seconds to load')}
-        onImageDownloaded={() => alert('Sucessful loaded')}
+        onImageDownloaded={() => {
+          alert('Sucessful loaded');
+          // some picture taking quite a long time to eventually downloaded
+          // ensure the image is loaded before can press save
+          setCanDownload(true);
+        }}
       />
 
       <AwesomeAlert // alert box for saving

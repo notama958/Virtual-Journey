@@ -42,6 +42,7 @@ const ModalScreen = ({route, navigation}) => {
           /**
            * Random search fetching random page within number of page (pages) with no duplication
            * getting the same number 5 times a round => fail to load more
+           * => avoid infinite loop
            */
           let randomPage = Math.round(Math.random() * pages) + 1;
           let times = 0;

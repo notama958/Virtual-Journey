@@ -13,6 +13,7 @@ import {
   getRandomPhoto,
 } from '../api/actions';
 
+// @Parent component HomeScreen
 function HomeScreen({navigation}) {
   const [isSelected, setSelection] = useState(false); //location checkbox
   const [text, setText] = useState(''); // TextInput
@@ -38,8 +39,7 @@ function HomeScreen({navigation}) {
   }, [locationServiceEnabledAsync]);
 
   /**
-   * gps check box allow and location is open already => activate gps => status checkbox is on
-   * either 2 conditions: status checkbox is off
+   * gps check box is pressed and location is open already => activate gps search
    */
   useEffect(() => {
     if (alertPress) {

@@ -9,9 +9,9 @@ import {
   checkReadFilePermission,
 } from '../api/actions';
 
-// @ Sub-component for rendering Flatlist
+// @Sub-component for rendering Flatlist
 // prop passed to ImageTag include the function (setReload)
-// to refetch the files in storage after deletion
+// to refetch the files in STORAGE after deletion
 
 const ImageTag = props => {
   // check if img is from storage
@@ -66,9 +66,9 @@ const ImageTag = props => {
            *
            * set state for imageDeletion to false => close this alert rightaway
            * calling action deleteImageFromStorage with local url
-           * wait for res(true/false)
+           * wait for response (true/false)
            * call function setReload from Storage component
-           * setReload state to false after 1s
+           * setReload state to false after 1s (re-rendering the number of files available in STORAGE)
            */
           (async function () {
             let res;
