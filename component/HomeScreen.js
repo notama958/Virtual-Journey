@@ -4,6 +4,7 @@ import styles from '../css/styles';
 // @ used modules
 import AwesomeAlert from 'react-native-awesome-alerts';
 import RNFetchBlob from 'rn-fetch-blob';
+import NetInfo from '@react-native-community/netinfo';
 // @ Child Components and actions
 import AppButton from './Button';
 import {
@@ -11,9 +12,10 @@ import {
   getPermissionLocation,
   locationServiceEnabledAsync,
   getRandomPhoto,
+  checkInternetConnection,
 } from '../api/actions';
 
-// @Parent component HomeScreen
+// @ Parent component HomeScreen
 function HomeScreen({navigation}) {
   const [isSelected, setSelection] = useState(false); //location checkbox
   const [text, setText] = useState(''); // TextInput
@@ -118,6 +120,7 @@ function HomeScreen({navigation}) {
             onPress={() => {
               /**
                *
+               * Check internet connection
                * vibrate 0.5s no repeat
                * set loading to true
                * calling action getRandomPhoto
@@ -126,31 +129,39 @@ function HomeScreen({navigation}) {
                * stat is not ok => throw error alert box
                *
                */
+
               Vibration.vibrate(1 * 500, false);
               setLoading(true);
               (async function () {
-                setLocation({
-                  longitude: null,
-                  latitude: null,
-                });
-                const randomPage = Math.round(Math.random() * 200) + 1;
-                const res = await getRandomPhoto(randomPage);
-                const jsonString = res.slice(14, res.length - 1); // extract the jsonString
-                let jsonFlickrApi = JSON.parse(jsonString);
-                const {photos, stat} = jsonFlickrApi;
-                if (stat !== 'ok') {
+                const isConnected = checkInternetConnection();
+                console.log(isConnected);
+                if (!isConnected) {
                   setLoading(false);
-                  setTimeout(() => setError(true), 500);
+                  alert('No Internet Connection');
                 } else {
-                  const {photo, pages, page} = photos;
-                  setLoading(false); // finished loading image array ready to move to Modal Screen
-                  setText('');
-                  navigation.navigate('Modal', {
-                    tags: 'Random',
-                    imageArr: photo,
-                    pages: pages,
-                    page: page,
+                  setLocation({
+                    longitude: null,
+                    latitude: null,
                   });
+                  const randomPage = Math.round(Math.random() * 200) + 1;
+                  const res = await getRandomPhoto(randomPage);
+                  const jsonString = res.slice(14, res.length - 1); // extract the jsonString
+                  let jsonFlickrApi = JSON.parse(jsonString);
+                  const {photos, stat} = jsonFlickrApi;
+                  if (stat !== 'ok') {
+                    setLoading(false);
+                    setTimeout(() => setError(true), 500);
+                  } else {
+                    const {photo, pages, page} = photos;
+                    setLoading(false); // finished loading image array ready to move to Modal Screen
+                    setText('');
+                    navigation.navigate('Modal', {
+                      tags: 'Random',
+                      imageArr: photo,
+                      pages: pages,
+                      page: page,
+                    });
+                  }
                 }
               })();
             }}
@@ -178,28 +189,34 @@ function HomeScreen({navigation}) {
               Vibration.vibrate(1 * 500, false);
               setLoading(true);
               (async function () {
-                const res = await getPhotoBySearch(text, currLocation);
-                const jsonString = res.slice(14, res.length - 1); // extract the jsonString
-                let jsonFlickrApi = JSON.parse(jsonString);
-                const {photos, stat} = jsonFlickrApi;
-                setLocation({
-                  longitude: null,
-                  latitude: null,
-                });
-                if (stat !== 'ok') {
+                const isConnected = checkInternetConnection();
+                if (!isConnected) {
                   setLoading(false);
-                  setTimeout(() => setError(true), 500);
+                  alert('No Internet Connection');
                 } else {
-                  const {photo, pages, page} = photos;
-                  setTimeout(() => setLoading(false), 500);
-                  setText('');
-                  navigation.navigate('Modal', {
-                    location: currLocation,
-                    tags: text,
-                    imageArr: photo,
-                    pages: pages,
-                    page: page,
+                  const res = await getPhotoBySearch(text, currLocation);
+                  const jsonString = res.slice(14, res.length - 1); // extract the jsonString
+                  let jsonFlickrApi = JSON.parse(jsonString);
+                  const {photos, stat} = jsonFlickrApi;
+                  setLocation({
+                    longitude: null,
+                    latitude: null,
                   });
+                  if (stat !== 'ok') {
+                    setLoading(false);
+                    setTimeout(() => setError(true), 500);
+                  } else {
+                    const {photo, pages, page} = photos;
+                    setTimeout(() => setLoading(false), 500);
+                    setText('');
+                    navigation.navigate('Modal', {
+                      location: currLocation,
+                      tags: text,
+                      imageArr: photo,
+                      pages: pages,
+                      page: page,
+                    });
+                  }
                 }
               })();
             }}
@@ -224,7 +241,7 @@ function HomeScreen({navigation}) {
           />
         </View>
 
-        <AwesomeAlert // alert box for loading array of images
+        <AwesomeAlert // alert box for loading
           show={loading}
           showProgress={true}
           title="I'm loading~"
