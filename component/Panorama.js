@@ -18,6 +18,7 @@ import {
   formatDate,
   checkWritePermission,
   downloadImage,
+  checkInternetConnection,
 } from '../api/actions';
 
 // @ Parent-component for rendering 360deg image
@@ -166,11 +167,16 @@ const Panorama = ({route, navigation}) => {
         inputType="mono"
         enableTouchTracking={true}
         imageUrl={vrURL}
-        onImageLoadingFailed={() => alert('May take few seconds to load')}
+        onImageLoadingFailed={() => {
+          // check internet connection to alert viewer
+          const isConnected = checkInternetConnection();
+          if (!isConnected) alert('No Internet Connection');
+          else alert('May take few seconds to load');
+        }}
         onImageDownloaded={() => {
           alert('Sucessful loaded');
           // some picture taking quite a long time to eventually downloaded
-          // ensure the image is loaded before can press save
+          // ensure the image is loaded before can calling save function
           setCanDownload(true);
         }}
       />

@@ -4,6 +4,8 @@ import {PermissionsAndroid} from 'react-native'; // Permission to read + write
 import {FLICK_KEY, GROUP} from './types'; // keys
 import RNFetchBlob from 'rn-fetch-blob'; // File systems API
 import * as Location from 'expo-location'; // Location access
+import NetInfo from '@react-native-community/netinfo'; // Internet check
+import {createThrow} from 'typescript';
 const {config, fs} = RNFetchBlob;
 
 // example of urls
@@ -246,4 +248,19 @@ export const deleteImageFromStorage = async item => {
         console.log(err);
       });
   });
+};
+
+//@des         function to check internet active
+//@access      public
+
+export const checkInternetConnection = () => {
+  try {
+    let status;
+    NetInfo.addEventListener(state => {
+      status = state.isConnected;
+    });
+    return status;
+  } catch (err) {
+    console.log(err);
+  }
 };
