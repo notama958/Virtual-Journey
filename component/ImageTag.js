@@ -79,6 +79,7 @@ const ImageTag = props => {
               res = err;
             }
             props.setReload(res);
+            setImageDeletion(false);
             setTimeout(() => {
               props.setReload(false);
             }, 1000);

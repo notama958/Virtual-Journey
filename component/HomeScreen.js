@@ -134,7 +134,6 @@ function HomeScreen({navigation}) {
               setLoading(true);
               (async function () {
                 const isConnected = checkInternetConnection();
-                console.log(isConnected);
                 if (!isConnected) {
                   setLoading(false);
                   alert('No Internet Connection');
